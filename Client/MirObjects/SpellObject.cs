@@ -283,6 +283,19 @@ namespace Client.MirObjects
                     SoundManager.PlaySound(8457);
                     MapControl.Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.HornedCommander], 1199, 9, 900, CurrentLocation) { Blend = true });
                     break;
+
+                // added by HG; ChieftainSwordMapFire
+                case Spell.ChieftainSwordMapFire:
+                    BodyLibrary = Libraries.Monsters[(ushort)Monster.ChieftainSword];
+                    DrawFrame = 992;
+                    FrameInterval = 100;
+                    FrameCount = 10;
+                    Blend = true;
+                    Repeat = false;
+                    SoundManager.PlaySound(4342);
+                    //MapControl.Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.HornedCommander], 1199, 9, 900, CurrentLocation) { Blend = true });
+                    break;
+
             }
 
             NextMotion = CMain.Time + FrameInterval;

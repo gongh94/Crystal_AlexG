@@ -782,6 +782,10 @@ namespace Client.MirObjects
                             case Monster.HoodedSummoner:
                                 Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.HoodedSummoner], 352, 12, 12 * Frame.Interval, this));
                                 break;
+                            // added by HG
+                            case Monster.ChieftainSword:
+                                Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.ChieftainSword], 752 + (int)Direction * 7, 7, Frame.Count * Frame.Interval, this));
+                                break; // reference FlamingWooma
                         }
                         break;
                     case MirAction.Attack2:
@@ -847,6 +851,7 @@ namespace Client.MirObjects
                             case Monster.HoodedSummoner:
                                 Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.HoodedSummoner], 364, 10, 10 * Frame.Interval, this));
                                 break;
+
                         }
 
                         if ((ushort)BaseImage >= 10000)
@@ -883,6 +888,12 @@ namespace Client.MirObjects
                                 break;
                             case Monster.DragonWarrior:
                                 Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.DragonWarrior], 632 + (int)Direction * 4, 4, 8 * Frame.Interval, this));
+                                break;
+
+                            // added by HG
+                            case Monster.ChieftainSword:
+                                Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.ChieftainSword], 864 + (int)Direction * 10, 10, Frame.Count * Frame.Interval, this));
+                                Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.ChieftainSword], 944 + (int)Direction * 10, 10, Frame.Count * Frame.Interval, this));
                                 break;
                         }
                         break;
@@ -5591,6 +5602,7 @@ namespace Client.MirObjects
                         }
                         break;
                     }
+
 
             } //END OF DRAW EFFECTS
         }

@@ -1283,7 +1283,10 @@ public enum Spell : byte
     DarkOmaKingNuke = 215,
     HornedSorcererDustTornado = 216,
     HornedCommanderRockFall = 217,
-    HornedCommanderRockSpike = 218
+    HornedCommanderRockSpike = 218,
+
+    // added by HG
+    ChieftainSwordMapFire = 219//Chieftain Sword
 }
 
 public enum SpellEffect : byte

@@ -21,6 +21,7 @@ namespace Server.MirObjects
         Quest,
 
         // Sanjian
+
         SpellEffect,
     }
 
