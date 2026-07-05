@@ -25,6 +25,9 @@ namespace Server.MirObjects.Monsters
             // RangeAttack1
             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
 
+            ActionTime = Envir.Time + 300;
+            AttackTime = Envir.Time + AttackSpeed;
+
             for (int j = 0; j < 3; j++)
             {
                 for (int i = 0; i < 3; i++)

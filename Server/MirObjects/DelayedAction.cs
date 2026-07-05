@@ -21,7 +21,7 @@ namespace Server.MirObjects
         Quest,
 
         // Sanjian
-        Teleport,
+
         SpellEffect,
     }
 
