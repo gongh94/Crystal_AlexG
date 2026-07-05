@@ -111,12 +111,12 @@ namespace Server.MirObjects
             if (Envir.Time < TickTime) return;
             TickTime = Envir.Time + TickSpeed;
 
-            Cell cell = CurrentMap.GetCell(CurrentLocation);
-            for (int i = 0; i < cell.Objects.Count; i++)
-                if (cell != null)
-                {
-                    ProcessSpell(cell.Objects[i]);
-                }
+                Cell cell = CurrentMap.GetCell(CurrentLocation);
+                for (int i = 0; i < cell.Objects.Count; i++)
+                    if (cell != null)
+                    {
+                        ProcessSpell(cell.Objects[i]);
+                    }
 
             if ((Spell == Spell.MapLava) || (Spell == Spell.MapLightning)) Value = 0;
         }
@@ -404,6 +404,13 @@ namespace Server.MirObjects
                         }, Caster);
                         ob.OperateTime = 0;
                     }
+                    break;
+
+                case Spell.ChieftainSwordMapFire:
+                    if (ob.Race != ObjectType.Player && ob.Race != ObjectType.Monster) return;
+                    if (ob.Dead) return;
+                    if (!ob.IsAttackTarget(Caster)) return;
+                    ob.Struck(Value, DefenceType.MAC);
                     break;
             }
         }

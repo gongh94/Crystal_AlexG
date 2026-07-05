@@ -390,9 +390,8 @@ namespace Server.MirObjects
                     return new ManTree(info);
                 case 175:
                     return new ChieftainArcher(info);
-
-                //case 176: ChieftainSword
-
+               case 176: 
+                    return new ChieftainSword(info); // added by HG
                 case 177:
                     return new FrozenKnight(info);
                 case 178:
@@ -1328,7 +1327,24 @@ namespace Server.MirObjects
                 case DelayedType.SpellEffect:
                     CompleteSpellEffect(action.Params);
                     break;
+
+                // added by HG
+                case DelayedType.Teleport:
+                    DelayTeleport(action.Params);
+                    break;
             }
+        }
+
+        private void DelayTeleport(IList<object> data)
+        {
+            if (data.Count < 3)
+                return;
+
+            Map map = (Map)data[0];
+            Point location = (Point)data[1];
+            bool effects = (bool)data[2];
+
+            Teleport(CurrentMap, location, false);
         }
 
         public void PetRecall()
@@ -3866,5 +3882,42 @@ namespace Server.MirObjects
                 }
             }
         }
+
+        public void MoveForward(int distance, int delay)
+        {
+            // telpo location
+            Point location = Functions.PointMove(CurrentLocation, Direction, distance);
+
+            if (!CurrentMap.ValidPoint(location)) return;
+
+            var cellObjects = CurrentMap.GetCell(location).Objects;
+
+            bool blocked = false;
+            if (cellObjects != null)
+            {
+                for (int c = 0; c < cellObjects.Count; c++)
+                {
+                    MapObject ob = cellObjects[c];
+                    if (!ob.Blocking) continue;
+                    blocked = true;
+                    if ((cellObjects == null) || blocked) break;
+                }
+            }
+
+            // blocked telpo cancel
+            if (blocked) return;
+
+            if (delay > 0)
+            {
+                DelayedAction action = new DelayedAction(DelayedType.Teleport, Envir.Time + delay, CurrentMap, location, false);
+                ActionList.Add(action);
+            }
+            else
+            {
+                Teleport(CurrentMap, location, true);
+            }
+        }
+
+
     }
 }
