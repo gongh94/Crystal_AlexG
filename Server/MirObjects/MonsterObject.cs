@@ -489,6 +489,9 @@ namespace Server.MirObjects
                 case 255://Skill 
                     return new StoneTrap(info);
 
+                case 300: 
+                    return new HellLord2(info);
+
                 default:
                     return new MonsterObject(info);
             }

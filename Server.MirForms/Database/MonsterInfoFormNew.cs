@@ -49,7 +49,7 @@ namespace Server.Database
             Modified.ValueType = typeof(bool);
             MonsterIndex.ValueType = typeof(int);
             MonsterName.ValueType = typeof(string);
-            MonsterAI.ValueType = typeof(byte);
+            MonsterAI.ValueType = typeof(ushort);
             MonsterEffect.ValueType = typeof(byte);
             MonsterLevel.ValueType = typeof(ushort);
             MonsterLight.ValueType = typeof(byte);
@@ -227,7 +227,7 @@ namespace Server.Database
 
                 monster.Name = (string)row.Cells["MonsterName"].Value;
                 monster.Image = (Monster)row.Cells["MonsterImage"].Value;
-                monster.AI = (byte)row.Cells["MonsterAI"].Value;
+                monster.AI = (ushort)row.Cells["MonsterAI"].Value;
                 monster.Level = (ushort)row.Cells["MonsterLevel"].Value;
                 monster.Effect = (byte)row.Cells["MonsterEffect"].Value;
                 monster.Light = (byte)row.Cells["MonsterLight"].Value;
@@ -611,7 +611,7 @@ namespace Server.Database
 
             row.Cells["MonsterName"].Value = "";
             row.Cells["MonsterImage"].Value = (Monster)0;
-            row.Cells["MonsterAI"].Value = (byte)0;
+            row.Cells["MonsterAI"].Value = (ushort)0;
             row.Cells["MonsterLevel"].Value = (ushort)0;
             row.Cells["MonsterEffect"].Value = (byte)0;
             row.Cells["MonsterLight"].Value = (byte)0;
@@ -747,6 +747,11 @@ namespace Server.Database
                     }
                 }
             }
+        }
+
+        private void monsterInfoGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

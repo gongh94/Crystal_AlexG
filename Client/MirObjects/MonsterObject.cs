@@ -249,6 +249,8 @@ namespace Client.MirObjects
                 case Monster.TaoistScroll:
                 case Monster.WizardScroll:
                 case Monster.PurpleFaeFlower:
+
+                case Monster.HellLord2: // HG
                     Stoned = info.Extra;
                     break;
             }
@@ -659,6 +661,15 @@ namespace Client.MirObjects
                         break;
                     case MirAction.Show:
                         PlayPopupSound();
+
+                        switch (BaseImage)
+                        {
+                            // HG
+                            case Monster.HellLord2:
+                                MapControl.Effects.Add(new Effect(Libraries.Monsters[(ushort)Monster.HellLord2], 1690, 20, 2200, CurrentLocation, CMain.Time + 900));
+                                break;
+                        }
+
                         break;
                     case MirAction.Pushed:
                         FrameIndex = Frame.Count - 1;
@@ -1398,6 +1409,7 @@ namespace Client.MirObjects
                                 case Monster.TaoistScroll:
                                 case Monster.WizardScroll:
                                 case Monster.PurpleFaeFlower:
+                                case Monster.HellLord2: // stand up
                                     Stoned = false;
                                     break;
                                 case Monster.Shinsu:

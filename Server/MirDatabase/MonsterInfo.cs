@@ -24,7 +24,8 @@ namespace Server.MirDatabase
         public string Name = string.Empty;
 
         public Monster Image;
-        public byte AI, Effect, ViewRange = 7, CoolEye;
+        public ushort AI;
+        public byte Effect, ViewRange = 7, CoolEye;
         public ushort Level;
 
         public byte Light;
@@ -56,7 +57,7 @@ namespace Server.MirDatabase
             Name = reader.ReadString();
 
             Image = (Monster) reader.ReadUInt16();
-            AI = reader.ReadByte();
+            AI = reader.ReadUInt16(); // Byte to ushort
             Effect = reader.ReadByte();
 
             if (Envir.LoadVersion < 62)
@@ -236,7 +237,7 @@ namespace Server.MirDatabase
             if (!ushort.TryParse(data[1], out image)) return;
             info.Image = (Monster) image;
 
-            if (!byte.TryParse(data[2], out info.AI)) return;
+            if (!ushort.TryParse(data[2], out info.AI)) return;
             if (!byte.TryParse(data[3], out info.Effect)) return;
             if (!ushort.TryParse(data[4], out info.Level)) return;
             if (!byte.TryParse(data[5], out info.ViewRange)) return;

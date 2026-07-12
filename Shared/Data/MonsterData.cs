@@ -6,7 +6,8 @@ public class ClientMonsterInfo
     public string Name = string.Empty;
     public string GameName = string.Empty;
     public Monster Image;
-    public byte AI, Effect, ViewRange, CoolEye;
+    public ushort AI;
+    public byte Effect, ViewRange, CoolEye;
     public ushort Level;
     public byte Light;
     public ushort AttackSpeed, MoveSpeed;

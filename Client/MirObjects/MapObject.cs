@@ -65,7 +65,7 @@ namespace Client.MirObjects
         public bool Dead, Hidden, SitDown, Sneaking;
         public PoisonType Poison;
         public long DeadTime;
-        public byte AI;
+        public ushort AI;
         public bool InTrapRock;
         public int JumpDistance;
 

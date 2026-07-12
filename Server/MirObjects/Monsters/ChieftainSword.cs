@@ -73,13 +73,39 @@ namespace Server.MirObjects.Monsters
                 return;
             } else if (Envir.Time > _mapFireTime)
             {
-                SpawnFireWall();
+                SpawnFireWall(); // only for drawing fireWalls on client side; logically damage made at several discrete points
                 _mapFireTime = Envir.Time + 8000;
+
+                // here starts the real damage logic; alternatively, one can edit \MirEnvir\Map.cs to specify logical damage range of the spell
+                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                if (damage == 0) return;
+
+                DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 2000, Target, damage, DefenceType.MACAgility);
+                ActionList.Add(action);
 
                 return;
             }
 
             MoveTo(Target.CurrentLocation);
+        }
+
+        protected override void CompleteRangeAttack(IList<object> data)
+        {
+            MapObject target = (MapObject)data[0];
+            int damage = (int)data[1];
+            DefenceType defence = (DefenceType)data[2];
+
+            if (target == null || !target.IsAttackTarget(this) || target.CurrentMap != CurrentMap || target.Node == null) return;
+
+                List<MapObject> targets = FindAllTargets(7, CurrentLocation);
+                if (targets.Count == 0) return;
+
+                for (int i = 0; i < targets.Count; i++)
+                {
+                    targets[i].Attacked(this, damage, defence);
+                }
+            
+
         }
     }
     }

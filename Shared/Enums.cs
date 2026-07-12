@@ -745,6 +745,8 @@ public enum Monster : ushort
     AngryBird = 10012,
     Foxey = 10013,
     MedicalRat = 10014,
+
+    HellLord2 = 892 // helllord stage 2
 }
 
 public enum MirAction : byte
@@ -796,7 +798,11 @@ public enum MirAction : byte
 
     FishingCast,
     FishingWait,
-    FishingReel
+    FishingReel,
+
+    tbd1,
+    tbd2,
+    tbd3
 }
 
 public enum CellAttribute : byte

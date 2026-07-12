@@ -2297,7 +2297,8 @@ namespace ServerPackets
         public Point Location;
         public Monster Image;
         public MirDirection Direction;
-        public byte Effect, AI, Light;
+        public ushort AI;
+        public byte Effect, Light;
         public bool Dead, Skeleton;
         public PoisonType Poison;
         public bool Hidden, Extra;
@@ -2318,7 +2319,7 @@ namespace ServerPackets
             Image = (Monster)reader.ReadUInt16();
             Direction = (MirDirection)reader.ReadByte();
             Effect = reader.ReadByte();
-            AI = reader.ReadByte();
+            AI = reader.ReadUInt16(); // byte changed to ushort
             Light = reader.ReadByte();
             Dead = reader.ReadBoolean();
             Skeleton = reader.ReadBoolean();
